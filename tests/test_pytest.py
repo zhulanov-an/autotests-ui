@@ -2,12 +2,12 @@ def test_first_try():  # Этот тест мы добавили в предыд
     print("Hello World!")
 
 
-def test_assert_positive_case():  # Новый тест, которые проверяет положительный кейс
-    assert (2 + 2) == 4  # Ожидается, что тест пройдет
+def test_assert_positive_case():
+    assert (2 + 2) == 4
 
 
-def test_assert_negative_case():  # Новый тест, которые проверяет негативный кейс
-    assert (2 + 2) != 5  # Тут должна быть ошибка
+def test_assert_negative_case():
+    assert (2 + 2) != 5
 
 
 class TestUser:
