@@ -13,7 +13,7 @@ class SidebarListItemComponent(BaseComponent):
         self.button = page.get_by_test_id(f"{identifier}-drawer-list-item-button")
 
     def check_visible(self, title: str):
-        expect(self.icon).not_to_be_visible()
+        expect(self.icon).to_be_visible()
 
         expect(self.title).to_be_visible()
         expect(self.title).to_have_text(title)
