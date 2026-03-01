@@ -61,8 +61,8 @@ class CoursesListPage(BasePage):
         self.course_delete_menu_item.nth(index).click()
 
     def check_visible_course_card(self, index, title, max_score, min_score, estimated_time):
-        expect(self.courses_title.nth(index)).to_be_visible()
-        expect(self.courses_title.nth(index)).to_have_text(title)
+        expect(self.course_title.nth(index)).to_be_visible()
+        expect(self.course_title.nth(index)).to_have_text(title)
 
         expect(self.course_max_score_text.nth(index)).to_be_visible()
         expect(self.course_max_score_text.nth(index)).to_have_text(f"Max score: {max_score}")
