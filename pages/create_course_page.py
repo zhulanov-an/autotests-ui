@@ -1,6 +1,7 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
 from components.courses.create_course_exercise_form_component import CreateCourseExerciseFormComponent
+from components.courses.create_course_exercises_toolbar_view_component import CreateCourseExercisesToolbarViewComponent
 from components.courses.create_course_form_component import CreateCourseFormComponent
 from components.courses.create_course_toolbar_view_component import CreateCourseToolbarViewComponent
 from components.navigation.navbar_component import NavbarComponent
@@ -24,21 +25,7 @@ class CreateCoursePage(BasePage):
         self.create_exercise_form = CreateCourseExerciseFormComponent(page)
 
         self.excercises_empty_view = EmptyViewComponent(page, 'create-course-exercises')
-
-        # Заголовок и кнопка создания задания
-        self.exercises_title = page.get_by_test_id("create-course-exercises-box-toolbar-title-text")
-        self.create_exercise_button = page.get_by_test_id("create-course-exercises-box-toolbar-create-exercise-button")
-
-    # Методы для работы с упражнениями
-    def check_visible_exercises_title(self):
-        expect(self.exercises_title).to_be_visible()
-        expect(self.exercises_title).to_have_text("Exercises")
-
-    def check_visible_create_exercise_button(self):
-        expect(self.create_exercise_button).to_be_visible()
-
-    def click_create_exercise_button(self):
-        self.create_exercise_button.click()
+        self.create_course_exercise_toolbar_view = CreateCourseExercisesToolbarViewComponent(page)
 
     def check_visible_exercises_empty_view(self):
         self.excercises_empty_view.check_visible(
