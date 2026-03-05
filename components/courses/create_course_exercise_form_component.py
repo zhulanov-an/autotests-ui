@@ -23,10 +23,10 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         self.subtitle.check_have_text(f"#{index + 1} Exercise", index=index)
 
         self.title_input.check_visible(index=index)
-        self.title_input.check_have_text(title, index=index)
+        self.title_input.check_have_value(value=title, index=index)
 
         self.description_input.check_visible(index=index)
-        self.description_input.check_have_text(description, index=index)
+        self.description_input.check_have_value(value=description, index=index)
 
     def fill(self, index, title, description):
         self.title_input.fill(title, index=index)
