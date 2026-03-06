@@ -1,3 +1,5 @@
 .idea/
 .DS_Store
 browser-state.json
+/allure-results/
+/allure-report/
