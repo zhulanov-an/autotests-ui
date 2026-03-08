@@ -2,6 +2,7 @@ import allure
 import pytest
 from allure_commons.types import Severity
 
+from config import settings
 from pages.authentication.registration_page import RegistrationPage
 from pages.dashboard.dashboard_page import DashboardPage
 from tools.allure.epics import AllureEpic
@@ -25,11 +26,11 @@ class TestRegistration:
     @allure.severity(Severity.CRITICAL)
     def test_successful_registration(self, registration_page: RegistrationPage, dashboard_page: DashboardPage):
         registration_page.visit(AppRoute.REGISTRATION)
-        registration_page.registration_form.fill(email='user.name@gmail.com',
-                                                 username='username',
-                                                 password='password')
-        registration_page.registration_form.check_visible(email='user.name@gmail.com',
-                                                          username='username',
-                                                          password='password')
+        registration_page.registration_form.fill(email=settings.test_user.email,
+                                                 username=settings.test_user.username,
+                                                 password=settings.test_user.password)
+        registration_page.registration_form.check_visible(email=settings.test_user.email,
+                                                          username=settings.test_user.username,
+                                                          password=settings.test_user.password)
         registration_page.click_registration_button()
         dashboard_page.dashboard_toolbar_view.check_visible()

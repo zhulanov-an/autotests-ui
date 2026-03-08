@@ -2,6 +2,7 @@ import allure
 import pytest
 from allure_commons.types import Severity
 
+from config import settings
 from pages.authentication.login_page import LoginPage
 from pages.authentication.registration_page import RegistrationPage
 from pages.dashboard.dashboard_page import DashboardPage
@@ -26,8 +27,8 @@ class TestAuthorization:
         "email, password",
         [
             ("user.name@gmail.com", "password"),
-            ("user.name@gmail.com", "  "),
-            ("  ", "password")
+            ("user.name@gmail.com", " "),
+            (" ", "password")
         ]
     )
     @allure.tag(AllureTag.USER_LOGIN)
@@ -51,26 +52,26 @@ class TestAuthorization:
     ):
         registration_page.visit(AppRoute.REGISTRATION)
         registration_page.registration_form.fill(
-            email="user.name@gmail.com",
-            username="username",
-            password="password"
+            email=settings.test_user.email,
+            username=settings.test_user.username,
+            password=settings.test_user.password
         )
         registration_page.click_registration_button()
 
         # Проверка видимости элементов Dashboard
         dashboard_page.dashboard_toolbar_view.check_visible()
-        dashboard_page.navbar.check_visible(username="username")
+        dashboard_page.navbar.check_visible(username=settings.test_user.username)
         dashboard_page.sidebar.check_visible()
         # Клик по кнопке "Logout"
         dashboard_page.sidebar.click_logout()
 
         # Переход на страницу авторизации и авторизация
-        login_page.login_form.fill(email="user.name@gmail.com", password="password")
+        login_page.login_form.fill(email=settings.test_user.email, password=settings.test_user.password)
         login_page.click_login_button()
 
         # Проверка видимости элементов Dashboard после входа
         dashboard_page.dashboard_toolbar_view.check_visible()
-        dashboard_page.navbar.check_visible(username="username")
+        dashboard_page.navbar.check_visible(username=settings.test_user.username)
         dashboard_page.sidebar.check_visible()
 
     @allure.tag(AllureTag.NAVIGATION)
