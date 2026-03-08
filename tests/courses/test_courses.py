@@ -49,7 +49,7 @@ class TestCourses:
                                                             min_score="0")
         create_course_page.create_course_exercise_toolbar_view.check_visible()
         create_course_page.check_visible_exercises_empty_view()
-        create_course_page.image_upload_widget.upload_preview_image("./testdata/files/image.png")
+        create_course_page.image_upload_widget.upload_preview_image(settings.test_data.image_png_file)
         create_course_page.image_upload_widget.check_visible(is_image_uploaded=True)
         create_course_page.create_course_form.fill(
             title="Playwright",
@@ -81,7 +81,7 @@ class TestCourses:
     @allure.severity(Severity.CRITICAL)
     def test_edit_course(self, create_course_page: CreateCoursePage, courses_list_page: CoursesListPage):
         create_course_page.visit(AppRoute.CREATE_COURSE)
-        create_course_page.image_upload_widget.upload_preview_image("./testdata/files/image.png")
+        create_course_page.image_upload_widget.upload_preview_image(settings.test_data.image_png_file)
         create_course_page.create_course_form.fill(
             title="Playwright",
             estimated_time="2 weeks",
