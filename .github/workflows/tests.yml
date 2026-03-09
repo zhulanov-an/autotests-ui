@@ -34,26 +34,26 @@ jobs:
       - name: Upload allure results
         uses: actions/upload-artifact@v4
         with:
-          name: allure_results
+          name: allure-results
           path: allure-results
 
 
   publish-report:
     runs-on: ubuntu-latest
     needs: run-tests
-    steps:
-      - name: Download allure results
-        uses: actions/download-artifact@v5
-        with:
-          name: allure_results
 
-      - name: Get Allure history
+    steps:
+      - name: Check out repository
         uses: actions/checkout@v4
         if: always()
-        continue-on-error: true
         with:
           ref: gh-pages
           path: gh-pages
+
+      - name: Download allure results
+        uses: actions/download-artifact@v5
+        with:
+          name: allure-results
 
       - name: Generates Allure Report with history
         uses: simple-elf/allure-report-action@v1.13
