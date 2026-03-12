@@ -43,14 +43,14 @@ jobs:
         run: |
           ui-coverage-tool save-report
 
-      - name: Cache Coverage  history
+      - name: Cache Coverage history
         if: always()
         uses: actions/cache/save@v5
         with:
           path: coverage-history.json
           key: coverage-history-${{ github.run_id }}
 
-      - name: Upload Coverage report
+      - name: Upload Coverage results
         if: always()
         uses: actions/upload-artifact@v6
         with:
@@ -78,7 +78,7 @@ jobs:
           path: gh-pages
 
       - name: Download allure results
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           name: allure-results
           path: allure-results
