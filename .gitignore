@@ -10,10 +10,15 @@ allure-results
 allure-report
 
 # testing artifacts
-*.html
-*.json
 tracing
 videos
+
+# coverage
+coverage-results
+
+#common
+*.html
+*.json
 
 # other
 .DS_Store
